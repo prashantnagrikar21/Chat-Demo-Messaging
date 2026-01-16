@@ -9,7 +9,10 @@
 
 <h3>Chat Support APAC</h3>
 
-<script>
+<script type="text/javascript">
+    /* --------------------------------
+       Set Hidden Pre-Chat Fields
+       -------------------------------- */
     function setHiddenPrechatFields() {
         try {
             embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
@@ -18,35 +21,43 @@
                 Region: 'APAC'
             });
         } catch (e) {
-            console.error(e);
+            console.error('Prechat error:', e);
         }
     }
 
+    /* --------------------------------
+       Initialize Embedded Messaging
+       -------------------------------- */
     function initEmbeddedMessaging() {
         try {
             embeddedservice_bootstrap.settings.language = 'en_US';
 
             embeddedservice_bootstrap.init(
-                '00Dbf000005CU2f',
-                'NA_APAC_Chat',
+                '00Dbf000005CU2f', // Org Id
+                'NA_APAC_Chat',   // Messaging Deployment Name
                 'https://enphase--sbprashant.sandbox.my.site.com/ESWNAAPACChat1768371637392',
                 {
                     scrt2URL: 'https://enphase--sbprashant.sandbox.my.salesforce-scrt.com'
                 }
             );
         } catch (err) {
-            console.error(err);
+            console.error('Embedded Messaging init error:', err);
         }
     }
 
-    window.addEventListener("onEmbeddedMessagingReady", () => {
+    /* --------------------------------
+       Messaging Ready Event
+       -------------------------------- */
+    window.addEventListener('onEmbeddedMessagingReady', function () {
+        console.log('Embedded Messaging Ready');
         setHiddenPrechatFields();
     });
 </script>
 
+<!-- ✅ CORRECT SCRIPT FOR MESSAGING FOR WEB -->
 <script
     type="text/javascript"
-    src="https://enphase--sbprashant.sandbox.my.site.com/ESWNAAPACChat1768371637392/embeddedservice/embeddedservice_bootstrap.js"
+    src="https://enphase--sbprashant.sandbox.my.site.com/ESWNAAPACChat1768371637392/assets/js/bootstrap.min.js"
     onload="initEmbeddedMessaging()">
 </script>
 
