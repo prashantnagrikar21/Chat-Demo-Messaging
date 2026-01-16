@@ -9,10 +9,7 @@
 
 <h3>Chat Support APAC</h3>
 
-<script type="text/javascript">
-    /* ---------------------------
-       Hidden Pre-Chat Fields
-       ---------------------------- */
+<script>
     function setHiddenPrechatFields() {
         try {
             embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
@@ -21,42 +18,35 @@
                 Region: 'APAC'
             });
         } catch (e) {
-            console.error('Prechat error:', e);
+            console.error(e);
         }
     }
 
-    /* ---------------------------
-       Initialize Embedded Messaging
-       ---------------------------- */
     function initEmbeddedMessaging() {
         try {
             embeddedservice_bootstrap.settings.language = 'en_US';
 
             embeddedservice_bootstrap.init(
-                '00Dbf000005CU2f', // Org Id
-                'NA_APAC_Chat',   // Messaging Deployment Name
+                '00Dbf000005CU2f',
+                'NA_APAC_Chat',
                 'https://enphase--sbprashant.sandbox.my.site.com/ESWNAAPACChat1768371637392',
                 {
                     scrt2URL: 'https://enphase--sbprashant.sandbox.my.salesforce-scrt.com'
                 }
             );
         } catch (err) {
-            console.error('Error loading Embedded Messaging:', err);
+            console.error(err);
         }
     }
 
-    /* ---------------------------
-       Messaging Ready Event
-       ---------------------------- */
     window.addEventListener("onEmbeddedMessagingReady", () => {
-        console.log('Embedded Messaging Ready');
         setHiddenPrechatFields();
     });
 </script>
 
 <script
     type="text/javascript"
-    src="https://enphase--sbprashant.sandbox.my.site.com/ESWNAAPACChat1768371637392/assets/js/bootstrap.min.js"
+    src="https://enphase--sbprashant.sandbox.my.site.com/ESWNAAPACChat1768371637392/embeddedservice/embeddedservice_bootstrap.js"
     onload="initEmbeddedMessaging()">
 </script>
 
